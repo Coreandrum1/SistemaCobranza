@@ -30,7 +30,8 @@
         @endforeach
 
         <span class="navbar">
-            <a href="/owner">Mis cobros</a>
+            <a class="nav-link" href="/owner">Mis cobros</a>
+            <a class="nav-link" href="/ownerpayments/{{$ar->id}}">Mis pagos</a>
         </span>
         <span class="navbar">
             <a class="nav-link" href="/registration/create">Registrar usuario</a>

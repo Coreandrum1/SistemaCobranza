@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\charges;
 use App\payments;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -64,7 +65,15 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $payments = DB::table('payments')
+            ->join('users','id_debtor','=','users.id')
+            ->select('users.name', 'payments.id', 'payments.amount', 'users.lastname', 'payments.created_at')
+            ->where('users.id_owner', $id)
+            ->orderBy('users.name')
+            ->get();
+
+            $arr = \Session::get('curr_session');
+            return view('pages.showpayments', ['payments' => $payments, 'arr' => $arr]);
     }
 
     /**

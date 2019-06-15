@@ -7,6 +7,8 @@ use Auth;
 use App\charges;
 use App\user;
 use App\users_charges;
+use App\payments;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -28,9 +30,21 @@ class SessionController extends Controller
      */
     public function show($id)
     {
+        $charges = DB::table('users_charges')
+            ->where('id_charge', $id)
+            ->join('users', 'id_user','=','users.id')
+            ->join('charges', 'id_charge','=','charges.id')
+            ->select('users.name', 'charges.id', 'charges.amount', 'users.lastname')
+            ->get();
+
+        $payed = DB::table('payments')
+        ->where('id_charge', $id)
+        ->join('users', 'id_debtor', '=', 'users.id')
+        ->select('payments.id', 'payments.amount', 'users.name', 'payments.created_at')
+        ->get();
+
         $arr = \Session::get('curr_session');
-        $charges = users_charges::where('id_charge', $id)->with('user')->get();
-        return view('pages.showcharges', ['arr'=> $arr, 'charges' => $charges]);
+        return view('pages.showcharges', ['arr'=> $arr, 'charges' => $charges, 'payed' => $payed, 'acc' => $acc = 0]);
 
     }
 

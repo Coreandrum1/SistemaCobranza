@@ -31,6 +31,8 @@ Route::resource('registration', 'UserController');
 
 Route::resource('payment', 'PaymentController');
 
+Route::resource('/ownerpayments', 'PaymentController');
+
 
 
 Route::get('flush2', 'SessionController@flush');
