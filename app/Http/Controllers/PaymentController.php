@@ -76,6 +76,20 @@ class PaymentController extends Controller
             return view('pages.showpayments', ['payments' => $payments, 'arr' => $arr]);
     }
 
+    public function bydate()
+    {
+        $id = \Session::get('curr_session');
+        $payments = DB::table('payments')
+            ->join('users','id_debtor','=','users.id')
+            ->select('users.name', 'payments.id', 'payments.amount', 'users.lastname', 'payments.created_at')
+            ->where('users.id_owner', $id[0]['id'])
+            ->orderBy('payments.created_at')
+            ->get();
+
+            $arr = \Session::get('curr_session');
+            return view('pages.showpayments', ['payments' => $payments, 'arr' => $arr]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

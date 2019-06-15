@@ -33,6 +33,8 @@ Route::resource('payment', 'PaymentController');
 
 Route::resource('/ownerpayments', 'PaymentController');
 
+Route::get('/ownerpaymentsbydate', 'PaymentController@bydate');
+
 
 
 Route::get('flush2', 'SessionController@flush');

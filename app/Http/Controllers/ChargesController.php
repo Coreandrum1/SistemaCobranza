@@ -45,6 +45,8 @@ class ChargesController extends Controller
         ]);
 
         $arr = \Session::get('curr_session');
+
+        
         $post = new charges;
         $post->amount = $request->input('amount');
         $post->id_owner = $arr[0]['id'];
@@ -55,6 +57,8 @@ class ChargesController extends Controller
         $post2->id_charge = $items;
         $post2->id_user = $request->input('debtor');
         $post2->save();
+
+
 
         return redirect('owner');
     }

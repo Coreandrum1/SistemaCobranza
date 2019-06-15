@@ -58,7 +58,20 @@ class SessionController extends Controller
 
     public function retrieveGuest(){
         $arr = \Session::get('curr_session');
-        return view('pages.debtor')->with('arr', $arr);
+  
+
+        $charges = DB::table('users_charges')
+        ->join('users', 'id_user', '=', 'users.id')
+        ->join('charges','users_charges.id_charge','=','charges.id')
+        ->where('users.id', $arr[0]['id'])
+        ->select('users_charges.id_charge','charges.amount','charges.created_at','users.id')
+        ->get();
+
+        $payments = DB::table('payments')
+        ->where('id_debtor',$arr[0]['id'])
+        ->get();
+
+        return view('pages.debtor', ['arr'=> $arr, 'charges' => $charges,'payments' => $payments]);
     }
     public function flush(){
         Auth::logout();

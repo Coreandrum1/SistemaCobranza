@@ -28,19 +28,36 @@
             <span class="nav-link text-success">ID: {{$ar->id}}</span>
             <span class="nav-link text-success">{{$ar->name}} {{$ar->lastname}}</span>
         @endforeach
-
+        
         <span class="navbar">
             <a class="nav-link" href="/owner">Mis cobros</a>
-            <a class="nav-link" href="/ownerpayments/{{$ar->id}}">Mis pagos</a>
+        </span>
+        <span class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Pagos
+            </a>
+            <div class="dropdown-menu">
+                <a class="nav-link" href="/ownerpayments/{{$ar->id}}">Por nombre</a>
+                <a class="nav-link" href="/ownerpaymentsbydate">Por fecha</a>
+            </div>
+        </span>
+        <span class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Registrar
+            </a>
+            <div class="dropdown-menu">
+                <a class="nav-link" href="/registration/create">Registrar usuario</a>
+                <a class="nav-link" href="/charge/create">Registrar cobro</a>
+                <a class="nav-link" href="/payment/create">Registrar pago</a>
+            </div>
         </span>
         <span class="navbar">
-            <a class="nav-link" href="/registration/create">Registrar usuario</a>
-            <a class="nav-link" href="/charge/create">Registrar cobro</a>
-            <a class="nav-link" href="/payment/create">Registrar pago</a>
             <a class="nav-link" href="/flush2">Cerrar sesión</a>
         </span>
         </nav>
 
+
+        
 
         <main role="main" class="container">
             @include('inc.messages')
