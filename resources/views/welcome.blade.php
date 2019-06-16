@@ -12,7 +12,7 @@
             <div class="jumbotron text-center">
                 <h1 class="display-3">¡Bienvenido!</h1>
                 <p>Sistema de cobranza, inicia sesión como deudor o propietario</p>
-                <a class="btn-primary btn-lg" href="/login">Iniciar sesión</a>
+                <a class="btn-primary btn-lg" href="/login">Iniciar sesión</a> <!-- this button will call login() function on PagesController-->
             </div>
         </div>
 

@@ -22,10 +22,11 @@
     </head>
 
     <body>
-
+        <!-- Debtors only navbar -->
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <span class="navbar-brand">{{config('app.name')}}</span>
             <ul class="navbar-nav mr-auto">
+                <!-- foreach to get ID and Name of current user-->
                 @foreach ($arr as $ar)
                     <li class="nav-item">
                         <span class="nav-link ">ID: {{$ar->id}}</span>
@@ -43,11 +44,9 @@
                 </ul>
         </nav>
 
-       
-
         <div class="container">
-                @include('inc.messages')
-                @yield('content')
+                @include('inc.messages') <!-- Includes error messages from inc/messages.blade.php -->
+                @yield('content') <!-- makes this layout extendible for external views -->
         </div>
         
     </body>

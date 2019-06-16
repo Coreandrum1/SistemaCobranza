@@ -52,7 +52,7 @@ class SessionController extends Controller
     public function retrieve()
     { 
         $arr = \Session::get('curr_session');
-        $data = charges::where('id_owner', $arr[0]['id'])->get();
+        $data = charges::where('id_owner', $arr[0]->id)->get();
         return view('pages.charges', ['arr'=> $arr, 'data' => $data]);
     }
 
@@ -63,7 +63,7 @@ class SessionController extends Controller
         $charges = DB::table('users_charges')
         ->join('users', 'id_user', '=', 'users.id')
         ->join('charges','users_charges.id_charge','=','charges.id')
-        ->where('users.id', $arr[0]['id'])
+        ->where('users.id', $arr[0]->id)
         ->select('users_charges.id_charge','charges.amount','charges.created_at','users.id')
         ->get();
 

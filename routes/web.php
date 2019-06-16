@@ -15,7 +15,7 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/login', 'PagesController@login');
 
-Route::resource('/owner', 'sessionController');
+Route::resource('/owner', 'SessionController');
 
 Route::get('/owner', 'SessionController@retrieve');
 

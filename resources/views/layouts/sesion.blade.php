@@ -21,6 +21,8 @@
         <title>{{config('app.name')}}</title>
     </head>
 
+
+    <!-- login only layout -->
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="#">{{config('app.name')}}</a>
@@ -28,7 +30,7 @@
 
         <div class="container">
                 @include('inc.messages')
-                @yield('content')
+                @yield('content') <!-- makes this layout extendible -->
         </div>
         
     </body>

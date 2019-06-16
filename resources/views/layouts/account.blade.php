@@ -22,25 +22,23 @@
     </head>
 
 
-    <!-- Structure -->
+    <!-- owners only layout -->
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="#">{{config('app.name')}}</a>
         <ul class="navbar-nav mr-auto">
-        @foreach ($arr as $ar)
-            
 
+            <!-- foreach to get ID and name of tthe current user -->
+        @foreach ($arr as $ar)
                 <li class="nav-item">
                     <span class="nav-link ">ID: {{$ar->id}}</span>
                 </li>
                 <li class="navbar-item">
                     <span class="nav-link ">{{$ar->name}} {{$ar->lastname}}</span>
                 </li>
-
-        
         @endforeach
-          
         </ul>
+
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/owner">Mis cobros</a>
@@ -76,7 +74,7 @@
         </nav>
         <main role="main" class="container">
             @include('inc.messages')
-            @yield('content')
+            @yield('content') <!-- makes this layout extendible for external views -->
         </main>
     </body>
 </html>

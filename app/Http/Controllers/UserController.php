@@ -50,7 +50,7 @@ class UserController extends Controller
         $post->phonenumber = $request->input('phone');
         $post->lastname = $request->input('lastname');
         $post->password = $request->input('password');
-        $post->id_owner = $arr[0]['id'];
+        $post->id_owner = $arr[0]->id;
         $post->save();
 
 

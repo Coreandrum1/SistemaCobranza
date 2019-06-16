@@ -40,24 +40,25 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+        //This will validate that blanks are filled
         $this->validate($request, [
             'phone' => 'required',
             'password' => 'required'
         ]);
 
-       
-
+       //compare if there is a user with same entered credentials
         $website_info = User::where([
             ['phonenumber', '=', $request->input('phone')],
             ['password', '=', $request->input('password')]
-        ])->first();
+        ])->first(); //get the first match  
 
 
-            if (count($website_info) > 0){
-
-                if(\Session::get('curr_session')){
+        
+            if (sizeof($website_info) > 0){
+                //if there is a matching result, 
+                if(\Session::get('curr_session')){                     //
                     \Session::flush();
-                    \Session::push('curr_session',$website_info);
+                    \Session::push('curr_session',$website_info);      //this will delete
                 }
                 else{
                     \Session::push('curr_session',$website_info);

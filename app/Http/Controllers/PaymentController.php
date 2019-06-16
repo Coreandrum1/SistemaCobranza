@@ -28,8 +28,8 @@ class PaymentController extends Controller
     public function create()
     {
         $arr = \Session::get('curr_session');
-        $items = User::where([['id_owner', $arr[0]['id']],['id','<>', $arr[0]['id']]] )->pluck('name', 'id');
-        $ch = charges::where('id_owner', $arr[0]['id'])->pluck('amount', 'id');
+        $items = DB::table('users')->where([['id_owner', $arr[0]->id],['id','<>', $arr[0]->id]] )->pluck('name', 'id');
+        $ch = DB::table('charges')->where('id_owner', $arr[0]->id)->pluck('amount', 'id');
         return view('pages.regpayments', ['arr' => $arr, 'items' => $items, 'ch' => $ch]);
     }
 
@@ -82,7 +82,7 @@ class PaymentController extends Controller
         $payments = DB::table('payments')
             ->join('users','id_debtor','=','users.id')
             ->select('users.name', 'payments.id', 'payments.amount', 'users.lastname', 'payments.created_at')
-            ->where('users.id_owner', $id[0]['id'])
+            ->where('users.id_owner', $id[0]->id)
             ->orderBy('payments.created_at', 'desc')
             ->get();
 

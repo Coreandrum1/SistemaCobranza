@@ -16,11 +16,15 @@
                         <p>{{$pay->created_at}}</p>
                         <p>Acumulado: $ {{number_format($acc += $pay->amount)}}</p>
                     </div>
+                    @else
+
                     @endif
             @endforeach
+            
             <p class="text-success">Monto de cobro $ {{number_format($charge->amount)}}</p>
             <p class="text-danger">Total a restar -$ {{number_format($acc)}}</p>
             <p class="text-success">Pendiente $ {{number_format($charge->amount - $acc)}}</p>
+            <p style="display: none;">{{$acc = 0}} pagos</p>
             </div>
         @endforeach
     @else

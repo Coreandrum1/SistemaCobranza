@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\charges;
 use App\users_charges;
+use Illuminate\Support\Facades\DB;
 
 class ChargesController extends Controller
 {
@@ -26,7 +27,7 @@ class ChargesController extends Controller
      */
     public function create()
     {
-        $items = User::whereColumn('id',"<>", 'id_owner')->pluck('name', 'id');
+        $items = DB::table('users')->whereColumn('id',"<>", 'id_owner')->pluck('name', 'id');
         $arr = \Session::get('curr_session');
         return view('pages.regcharge', ['arr' => $arr, 'items' => $items]);
     }
@@ -51,7 +52,7 @@ class ChargesController extends Controller
 
         $post = new charges;
         $post->amount = $request->input('amount');
-        $post->id_owner = $arr[0]['id'];
+        $post->id_owner = $arr[0]->id;
         $post->save();
         $items = charges::max('id');
 
