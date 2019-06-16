@@ -83,7 +83,7 @@ class PaymentController extends Controller
             ->join('users','id_debtor','=','users.id')
             ->select('users.name', 'payments.id', 'payments.amount', 'users.lastname', 'payments.created_at')
             ->where('users.id_owner', $id[0]['id'])
-            ->orderBy('payments.created_at')
+            ->orderBy('payments.created_at', 'desc')
             ->get();
 
             $arr = \Session::get('curr_session');

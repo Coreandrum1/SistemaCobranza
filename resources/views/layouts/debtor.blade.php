@@ -23,16 +23,24 @@
 
     <body>
 
-        <nav class="navbar bg-light border">
-                <span class="navbar-brand">{{config('app.name')}}</span>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <span class="navbar-brand">{{config('app.name')}}</span>
+            <ul class="navbar-nav mr-auto">
                 @foreach ($arr as $ar)
-                    <span class="nav-link text-success">ID: {{$ar->id}}</span>
-                    <span class="nav-link text-success">{{$ar->name}} {{$ar->lastname}}</span>
+                    <li class="nav-item">
+                        <span class="nav-link ">ID: {{$ar->id}}</span>
+                    </li>
+                    <li class="navbar-item">
+                        <span class="nav-link ">{{$ar->name}} {{$ar->lastname}}</span>
+                    </li>
                 @endforeach
-
-                <span class="navbar">
-                    <a class="nav-link" href="/flush2">Cerrar sesión</a>
-                </span>
+            </ul>
+            
+                <ul class="navbar-nav d-flex justify-content-end">
+                    <span class="nav-item">
+                        <a class="nav-link" href="/flush2">Cerrar sesión</a>
+                    </span>
+                </ul>
         </nav>
 
        

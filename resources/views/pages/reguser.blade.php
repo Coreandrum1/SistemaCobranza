@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         {{Form::label('phone_lbl', 'Número telefónico')}}
-        {{Form::number('phone', '', ['class' => 'form-control', 'placeholder' => 'Teléfono'])}}
+        {{Form::number('phone', '', ['class' => 'form-control', 'placeholder' => 'Teléfono', 'max' => '9999999999'])}}
     </div>
     <div class="form-group">
         {{Form::label('phone_lbl', 'Correo electrónico')}}

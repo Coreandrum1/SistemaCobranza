@@ -46,18 +46,25 @@ class ChargesController extends Controller
 
         $arr = \Session::get('curr_session');
 
-        
+        $list = $request->input('debtor');
+        //$list = implode(',', $list);
+
         $post = new charges;
         $post->amount = $request->input('amount');
         $post->id_owner = $arr[0]['id'];
         $post->save();
-
         $items = charges::max('id');
-        $post2 = new users_charges;
-        $post2->id_charge = $items;
-        $post2->id_user = $request->input('debtor');
-        $post2->save();
 
+        for($i = 0; $i < sizeof($list);$i++){
+            $post2 = new users_charges;
+            $post2->id_charge = $items;
+            $post2->id_user = $list[$i];
+            $post2->save();    
+        };
+
+        
+
+        
 
 
         return redirect('owner');

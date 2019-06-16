@@ -1,7 +1,7 @@
 @extends('layouts.sesion')
 
 @section('content')
-    <h1 class="well">Iniciar sesión</h1>
+    <h1 class="m-3">Iniciar sesión</h1>
     {!! Form::open(['action' => 'LoginController@store', 'method' => 'POST']) !!}
     <div class="form-group">
         {{Form::label('phone_lbl', 'Teléfono')}}

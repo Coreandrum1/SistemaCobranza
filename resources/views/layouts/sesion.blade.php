@@ -22,8 +22,8 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">{{config('app.name')}}</span>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{config('app.name')}}</a>
         </nav>
 
         <div class="container">
